@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Probabilistic CYK Parser</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div>
+    <p class="eyebrow">NLP MINI PROJECT</p>
+    <h1>Probabilistic CYK Algorithm</h1>
+    <p>Finding the Most Likely Parse Tree using a Probabilistic Context-Free Grammar</p>
+  </div>
+  <div class="badge">Backend: Flask · Frontend: HTML/CSS/JS</div>
+</header>
+
+<main class="container">
+  <section class="card input-card">
+    <div class="section-title">
+      <div>
+        <h2>1. Sentence Input</h2>
+        <p>Enter a sentence supported by the project PCFG.</p>
+      </div>
+    </div>
+    <div class="input-row">
+      <input id="sentence" value="the boy sees the dog"
+             placeholder="Example: the boy sees the dog">
+      <button id="parseBtn">Parse Sentence</button>
+    </div>
+    <div class="examples">
+      <button class="example" data-sentence="the boy sees the dog">the boy sees the dog</button>
+      <button class="example" data-sentence="a girl likes a cat">a girl likes a cat</button>
+      <button class="example" data-sentence="the big dog sees a small cat">the big dog sees a small cat</button>
+    </div>
+    <div id="error" class="error hidden"></div>
+  </section>
+
+  <section class="kpi-grid">
+    <div class="kpi"><span>Parse probability</span><strong id="prob">—</strong></div>
+    <div class="kpi"><span>Tokens</span><strong id="tokens">—</strong></div>
+    <div class="kpi"><span>Chart cells</span><strong id="cells">—</strong></div>
+    <div class="kpi"><span>Candidate operations</span><strong id="ops">—</strong></div>
+  </section>
+
+  <section class="two-col">
+    <div class="card">
+      <h2>2. Most Likely Parse Tree</h2>
+      <div id="tree" class="tree-output">Run the parser to generate the tree.</div>
+      <h3>Bracketed representation</h3>
+      <pre id="brackets" class="code-output">—</pre>
+    </div>
+
+    <div class="card">
+      <h2>3. Probability Analysis</h2>
+      <canvas id="probChart" width="650" height="310"></canvas>
+      <p class="note">The chart shows the best probability stored in each non-empty CKY cell.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>4. CKY Probability Chart</h2>
+    <div id="chartTable" class="chart-table">Run the parser to populate the chart.</div>
+  </section>
+
+  <section class="two-col">
+    <div class="card">
+      <h2>5. Algorithm Output</h2>
+      <div id="metrics" class="metrics"></div>
+    </div>
+    <div class="card">
+      <h2>6. PCFG Rules</h2>
+      <div id="grammar" class="grammar">Loading grammar…</div>
+    </div>
+  </section>
+
+  <section class="card explanation">
+    <h2>7. How the System Works</h2>
+    <div class="flow">
+      <div>Sentence Input</div><span>→</span>
+      <div>Tokenization</div><span>→</span>
+      <div>Lexical Probabilities</div><span>→</span>
+      <div>CKY Dynamic Programming</div><span>→</span>
+      <div>Viterbi Backtracking</div><span>→</span>
+      <div>Most Likely Tree</div>
+    </div>
+    <p>
+      For every span of words, the probabilistic CKY algorithm stores the highest
+      probability for each possible non-terminal. When multiple derivations can
+      generate the same constituent, the Viterbi-style recurrence keeps the one
+      with the greatest probability.
+    </p>
+  </section>
+</main>
+
+<footer>Probabilistic CYK NLP Project · Academic Demonstration</footer>
+<script src="app.js"></script>
+</body>
+</html>
